@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Question</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff4e8c, #ff9a9e);
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        overflow: hidden;
+    }
+    .box {
+        background: rgba(0,0,0,0.3);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        position: relative;
+        width: 90%;
+        max-width: 400px;
+    }
+    h1 {
+        letter-spacing: 2px;
+    }
+    button {
+        font-size: 18px;
+        padding: 10px 25px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        position: relative;
+    }
+    .yes {
+        background: #ff2d55;
+        color: white;
+    }
+    .no {
+        background: white;
+        color: #ff2d55;
+        position: absolute;
+    }
+    .result {
+        font-size: 40px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h1>KAJAL</h1>
+    <h2>Will you be my Valentine? 💌</h2>
+
+    <button class="yes" onclick="yesClick()">Yes</button>
+    <button class="no" id="noBtn" onmouseover="moveNo()" onclick="noClick()">No</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+let noCount = 0;
+
+function yesClick() {
+    document.getElementById("result").innerHTML = "❤️😘";
+}
+
+function noClick() {
+    const noBtn = document.getElementById("noBtn");
+    noCount++;
+
+    if (noCount === 1) {
+        noBtn.innerText = "Really?";
+    } else if (noCount === 2) {
+        noBtn.innerText = "Are you sure?";
+    } else {
+        noBtn.innerText = "No no you are not sure 😄";
+    }
+}
+
+function moveNo() {
+    const noBtn = document.getElementById("noBtn");
+    const box = document.querySelector(".box");
+
+    const maxX = box.clientWidth - noBtn.clientWidth;
+    const maxY = box.clientHeight - noBtn.clientHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+</script>
+
+</body>
+</html>
